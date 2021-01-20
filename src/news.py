@@ -24,9 +24,10 @@ def process_news(article_url,min_sentence = 5):
 def news_sentiments(keyword,num=10,min_sentence = 5):
 
     all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy')
-    if(len(all_articles['totalResults'])==0):
-        return "Sorry! Either you entered a keyword for which there is no article or we have run out of energy.In the latter case , try again later."
+    
     news = [process_news(i['url'],min_sentence) for i in all_articles['articles']][:num]
+    if(len(news)==0):
+        return "Sorry! Either you entered a keyword for which there is no article or we have run out of energy.In the latter case , try again later."
     while(news!=None and news.count(-1)>0):
         urls = urls.remove(urls[news.index(-1)])
         news = news.remove(-1)
