@@ -51,6 +51,7 @@ def build_similarity_matrix(sentences):
     return similarity_matrix
 
 def generate_summary(article, top_n=5):
+    
     stop_words = stopwords.words('english')
     summarize_text = []
 
@@ -62,7 +63,6 @@ def generate_summary(article, top_n=5):
     scores = nx.pagerank(sentence_similarity_graph)
 
     ranked_sentence = sorted(((scores[i],s) for i,s in enumerate(sentences)), reverse=True)    
-    
     for i in range(top_n):
       summarize_text.append(" ".join(ranked_sentence[i][1]))
 

@@ -17,7 +17,7 @@ keyword=st.sidebar.text_input("Enter the keyword you want to search"," ")
 if (keyword !=" "):
     st.write("Looking for ",keyword,"...")
     st.write("Reading News Articles..")
-    news_data=news_sentiments(keyword,5)
+    news_data=news_sentiments(keyword,10)
     st.write("Analysing tweets...")
     data=get_data(keyword,get_api())
     st.dataframe(data)

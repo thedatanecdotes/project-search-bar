@@ -7,7 +7,7 @@ from summary import generate_summary
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import re
 
-newsapi = NewsApiClient(api_key=os.environ['news-api'])
+newsapi = NewsApiClient(api_key="c72b4aa180274136b01201d248dac4aa")
 analyzer = SentimentIntensityAnalyzer()
 
 def process_news(article_url,min_sentence = 5):
@@ -24,16 +24,11 @@ def process_news(article_url,min_sentence = 5):
 def news_sentiments(keyword,num=5,min_sentence = 5):
 
     all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy')
-    st.write("Got news,processing it")
     urls=[i['url'] for i in all_articles['articles']][:num]
     news = [process_news(i['url'],min_sentence) for i in all_articles['articles']][:num]
-    st.write("Processed it")
-    if(len(news)==0):
-        return "Sorry! Either you entered a keyword for which there is no article or we have run out of energy.In the latter case , try again later."
-    if(-1 in news):
-        urls = urls.remove(urls[news.index(-1)])
-        news = news.remove(-1)
-    st.write("Passed tests,assigning sentiments")
+    while(news.count(-1)>0):
+        urls.remove(urls[news.index(-1)])
+        news.remove(-1)
     sentiments = [analyzer.polarity_scores(i)['compound'] for i in news]
     for i in range(len(sentiments)):
         c = sentiments[i]
@@ -44,7 +39,6 @@ def news_sentiments(keyword,num=5,min_sentence = 5):
         else:
             sentiments[i] = "Neutral"
 
-
     result = {}
     for i in range(len(news)):
         result[i] = {
@@ -54,6 +48,5 @@ def news_sentiments(keyword,num=5,min_sentence = 5):
             }
     
     return result
-    
 
 
