@@ -23,7 +23,7 @@ def process_news(article_url,min_sentence = 5):
 
 def news_sentiments(keyword,num=10,min_sentence = 5):
 
-    all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy')
+    all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy',page=1)
     if(all_articles['totalResults']==0):
         return "Sorry! No articles related to the keyword found."
     news = [process_news(i['url'],min_sentence) for i in all_articles['articles']][:num]
