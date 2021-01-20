@@ -1,4 +1,3 @@
-from GoogleNews import GoogleNews
 from newsapi import NewsApiClient
 import os
 from newspaper import fulltext
@@ -57,5 +56,5 @@ def news_sentiments(topic_name,num=10,min_sentence = 5):
     
     return result
     
-res=news_sentiments('farmbills',5)
+
 
