@@ -23,20 +23,14 @@ def process_news(article_url,min_sentence = 5):
 
 def news_sentiments(keyword,num=10,min_sentence = 5):
 
-    print("Fetching News...")
-    st.write(keyword,type(keyword),os.environ['news-api'])
     all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy')
     if(all_articles['totalResults']==0):
         return "Sorry! No articles related to the keyword found."
-
-    print("Summarising News...")
     news = [process_news(i['url'],min_sentence) for i in all_articles['articles']][:num]
     print(len(news))
     while(news!=None and news.count(-1)>0):
         urls = urls.remove(urls[news.index(-1)])
         news = news.remove(-1)
-    
-    print("Finding Sentiment...")
     sentiments = [analyzer.polarity_scores(i)['compound'] for i in news]
     for i in range(len(sentiments)):
         c = sentiments[i]
