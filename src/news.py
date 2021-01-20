@@ -7,7 +7,7 @@ from summary import generate_summary
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import re
 
-newsapi = NewsApiClient(api_key=os.environ.get('news_api'))
+newsapi = NewsApiClient(api_key=os.environ['news_api'])
 analyzer = SentimentIntensityAnalyzer()
 
 def process_news(article_url,min_sentence = 5):
@@ -24,7 +24,7 @@ def process_news(article_url,min_sentence = 5):
 def news_sentiments(keyword,num=10,min_sentence = 5):
 
     print("Fetching News...")
-    st.write(keyword,type(keyword))
+    st.write(keyword,type(keyword),os.environ['news_api'])
     all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy')
     if(all_articles['totalResults']==0):
         return "Sorry! No articles related to the keyword found."

@@ -14,10 +14,10 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 sentiment=SentimentIntensityAnalyzer()
 words=set(nltk.corpus.words.words())
 def get_api():
-    consumer_key = os.environ.get('consumer_key')
-    consumer_secret = os.environ.get('consumer_secret')
-    access_key= os.environ.get('access_key')
-    access_secret = os.environ.get('access_secret')
+    consumer_key = os.environ['consumer_key']
+    consumer_secret = os.environ['consumer_secret']
+    access_key= os.environ['access_key']
+    access_secret = os.environ['access_secret']
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_key, access_secret)
     api = tweepy.API(auth,wait_on_rate_limit=True,wait_on_rate_limit_notify=True)
