@@ -1,1 +1,1 @@
-web: sh setup.sh && streamlit run tweetstream.py
+web: sh setup.sh && streamlit run src/app.py
