@@ -1,4 +1,5 @@
 from newsapi import NewsApiClient
+import streamlit as st
 import os
 from newspaper import fulltext
 import requests
@@ -23,7 +24,7 @@ def process_news(article_url,min_sentence = 5):
 def news_sentiments(keyword,num=10,min_sentence = 5):
 
     print("Fetching News...")
-    
+    st.write(keyword,type(keyword))
     all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy')
     if(all_articles['totalResults']==0):
         return "Sorry! No articles related to the keyword found."
