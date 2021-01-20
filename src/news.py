@@ -1,14 +1,13 @@
 from GoogleNews import GoogleNews
+from newsapi import NewsApiClient
+import os
 from newspaper import fulltext
 import requests
 from summary import generate_summary
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
-
 import re
 
-googlenews = GoogleNews()
-googlenews.set_lang('en')
-googlenews.set_period('5d')
+newsapi = NewsApiClient(api_key=os.environ.get('news_api'))
 analyzer = SentimentIntensityAnalyzer()
 
 def process_news(article_url,min_sentence = 5):
@@ -25,20 +24,17 @@ def process_news(article_url,min_sentence = 5):
 def news_sentiments(topic_name,num=10,min_sentence = 5):
 
     print("Fetching News...")
-    googlenews.get_news(topic_name)
-    urls = googlenews.get_links()[:num]
-    googlenews.clear()
+    all_articles = newsapi.get_everything(q=topic_name,language='en',sort_by='relevancy')
+    if(all_articles['totalResults']==0):
+        return "Sorry! No articles related to the keyword found."
 
     print("Summarising News...")
-    news = [process_news("http://"+url,min_sentence) for url in urls]
-    
+    news = [process_news(i['url'],min_sentence) for i in all_articles['articles']][:num]
+    print(len(news))
     while(news!=None and news.count(-1)>0):
         urls = urls.remove(urls[news.index(-1)])
         news = news.remove(-1)
     
-    if news == None:
-        return "Error"
-
     print("Finding Sentiment...")
     sentiments = [analyzer.polarity_scores(i)['compound'] for i in news]
     for i in range(len(sentiments)):
@@ -52,13 +48,14 @@ def news_sentiments(topic_name,num=10,min_sentence = 5):
 
 
     result = {}
-    for i in range(num):
+    for i in range(len(news)):
         result[i] = {
-            'news': news[i],
-            'author': "http://"+urls[i],
-            'sentiment': sentiments[i]
+            'News Summary': news[i],
+            'Source': all_articles['articles'][i]['url'],
+            'Sentiment': sentiments[i]
             }
     
     return result
     
-print(news_sentiments("Farmer's Protest",3))
+res=news_sentiments('farmbills',5)
+
