@@ -20,10 +20,11 @@ def process_news(article_url,min_sentence = 5):
         print(e)
         return -1
 
-def news_sentiments(topic_name,num=10,min_sentence = 5):
+def news_sentiments(keyword,num=10,min_sentence = 5):
 
     print("Fetching News...")
-    all_articles = newsapi.get_everything(q=topic_name,language='en',sort_by='relevancy')
+    
+    all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy')
     if(all_articles['totalResults']==0):
         return "Sorry! No articles related to the keyword found."
 
