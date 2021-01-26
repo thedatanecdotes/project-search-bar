@@ -25,7 +25,7 @@ def news_sentiments(keyword,num=5,min_sentence = 5):
 
     all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy',page=1,page_size=10)
     urls=[i['url'] for i in all_articles['articles']][:num]
-    news = [process_news(i['url'],min_sentence) for i in all_articles['articles']][:num]
+    news = [process_news(i,min_sentence) for i in urls]
     while(news.count(-1)>0):
         urls.remove(urls[news.index(-1)])
         news.remove(-1)
@@ -43,7 +43,7 @@ def news_sentiments(keyword,num=5,min_sentence = 5):
     for i in range(len(news)):
         result[i] = {
             'News Summary': news[i],
-            'Source': all_articles['articles'][i]['url'],
+            'Source': urls[i],
             'Sentiment': sentiments[i]
             }
     

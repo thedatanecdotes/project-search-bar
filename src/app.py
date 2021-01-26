@@ -10,7 +10,6 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.set_page_config( page_title="The Data Anecdotes",page_icon="🧊",layout="centered",initial_sidebar_state="expanded")
 st.title("The Data Anecdotes")
-st.write("**Disclaimer**: This website simply performs analysis.We free our data from all possible biases prior to analysis but certain biases ,like that of opinions(in case of twitter and news websites), cannot be removed.Our analysis is done with the help of mathematical formulas and tend to have a certain amount of accuracy. They must not be perceived as absolute truth.")
 st.write("Enter the topic you want to search, in the sidebar. :wink: :mag:")
 st.sidebar.title("Project Search Bar")
 keyword=st.sidebar.text_input("Enter the keyword you want to search"," ")
@@ -29,6 +28,8 @@ if (keyword !=" "):
     sns.set()
     fig, ax = plt.subplots()
     fig.set_size_inches(11.7, 8.27)
+    with st.beta_expander("Disclaimer"):
+        st.write("**Disclaimer**: This website simply performs analysis.We free our data from all possible biases prior to analysis but certain biases ,like that of opinions(in case of twitter and news websites), cannot be removed.Our analysis is done with the help of mathematical formulas and tend to have a certain amount of accuracy. They must not be perceived as absolute truth.")
     with st.beta_expander("Tweet Analysis"):
         st.header("Sentiments Each Day") 
         sns.countplot(data['Date'].dt.date,hue=data['SS'])
