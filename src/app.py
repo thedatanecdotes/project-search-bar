@@ -14,6 +14,7 @@ st.write("Enter the topic you want to search, in the sidebar. :wink: :mag:")
 st.sidebar.title("Project Search Bar")
 keyword=st.sidebar.text_input("Enter the keyword you want to search"," ")
 
+
 if (keyword !=" "):
     st.write("Looking for ",keyword,"...")
     st.write("Reading News Articles..")
