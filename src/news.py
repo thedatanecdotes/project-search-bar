@@ -22,8 +22,7 @@ def process_news(article_url,min_sentence = 5):
         return -1
 
 def news_sentiments(keyword,num=5,min_sentence = 5):
-
-    all_articles = newsapi.get_everything(q=keyword,language='en',sort_by='relevancy',page=1,country="in",page_size=10)
+    all_articles = newsapi.get_top_headlines(q=keyword,language='en',country="in")
     urls=[i['url'] for i in all_articles['articles']][:num]
     news = [process_news(i,min_sentence) for i in urls]
     while(news.count(-1)>0):
