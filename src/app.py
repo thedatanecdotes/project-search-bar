@@ -19,7 +19,6 @@ if (keyword !=" "):
         news_data=news_sentiments(keyword,10)
         st.write("Analysing tweets...")
         data=get_data(keyword,get_api())
-        st.dataframe(data)
         st.success("Done!")
         pos=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="POSITIVE"]
         neg=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="NEGATIVE"]
@@ -36,9 +35,6 @@ if (keyword !=" "):
             st.pyplot(clear_figure="False",use_column_width="True")
             st.header("Top 10 tweet Locations")
             sns.countplot(y="Location",  data=data,order=data['Location'].value_counts().iloc[1:11].index)
-            st.pyplot(clear_figure="False",use_column_width="True")
-            st.header("Tweet Sources")
-            sns.countplot(y="Tweet Source",  data=data,order=data['Tweet Source'].value_counts().iloc[:10].index)
             st.pyplot(clear_figure="False",use_column_width="True")
             
             st.header("Positive Word Cloud")
@@ -62,3 +58,5 @@ if (keyword !=" "):
                 st.write("**Article**:",i)
                 for key,value in news_data[i].items():
                     st.write(" _",key,"_ :",value)
+        with st.beta_expander("See Tweet Data"):
+             st.dataframe(data)
