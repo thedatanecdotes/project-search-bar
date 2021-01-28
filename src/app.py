@@ -8,6 +8,16 @@ from news import news_sentiments
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
+def get_table_download_link(df):
+    """Generates a link allowing the data in a given panda dataframe to be downloaded
+    in:  dataframe
+    out: href string
+    """
+    csv = df.to_csv(index=False)
+    b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
+    href = f'<a href="data:file/csv;base64,{b64}">Download csv file</a>'
+    return href
+
 st.set_page_config( page_title="The Data Anecdotes",page_icon="🧊",layout="centered",initial_sidebar_state="expanded")
 st.title("The Data Anecdotes")
 st.write("Enter the topic you want to search, in the sidebar. :wink: :mag:")
@@ -60,3 +70,4 @@ if (keyword !=" "):
                     st.write(" _",key,"_ :",value)
         with st.beta_expander("See Tweet Data"):
              st.dataframe(data)
+             st.markdown(get_table_download_link(data))

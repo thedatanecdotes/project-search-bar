@@ -35,7 +35,8 @@ def clean_txt(input_txt, pattern):
    
     #removing stopwords    
     input_txt = ' '.join([i for i in input_txt.split() if not i in words])
-
+    #contractions
+    input_txt=contractions.fix(input_txt)
     #removing punctuation,numbers and whitespace   
     res=re.sub(r'[^\w\s]', '', input_txt.lower())
     res=re.sub('\s+',' ',res)
