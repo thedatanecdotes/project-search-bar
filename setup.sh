@@ -6,5 +6,6 @@ port = $PORT
 enableCORS = false
 enableWebsocketCompression=false
 [browser]
-serverAddress='thedatanecdotes'
+serverAddress='https://datanecdotes-psb.herokuapp.com/'
+serverPort= $PORT
 " > ~/.streamlit/config.toml
