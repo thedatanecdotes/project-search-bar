@@ -72,4 +72,4 @@ if (keyword !=" "):
                     st.write(" _",key,"_ :",value)
         with st.beta_expander("See Tweet Data"):
              st.dataframe(data)
-             st.markdown(get_table_download_link(data))
+             st.markdown(get_table_download_link(data),unsafe_allow_html=True)
