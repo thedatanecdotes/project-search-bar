@@ -15,8 +15,6 @@
 - [X] News Summary 
 - [X] News Sentiment Analysis
 - [X] Downloadable Tweets Data (as per Twitter Guidelines)
-  
-  <br/>
   <br/>
   <h3> Contributors </h3>
   <ul>
@@ -24,5 +22,4 @@
         <li> <a href="https://github.com/tarushi98"/> Tarushi Pathak</a> </li>
   </ul>
 
-  <h3> Link to Application:</h3> 
-  [Click me](https://datanecdotes-psb.herokuapp.com/)
+  <h3> Link to Application:</h3> <a href="https://datanecdotes-psb.herokuapp.com/">The Data Anecdotes-PSB</a>
