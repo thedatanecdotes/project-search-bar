@@ -3,11 +3,14 @@
         <br/>
         <h2 align="center"> Project Search Bar </h2>
         <br/>
-        <h3 align="center"> {Description} </h3>
+        <p align="center">  Fake news spreads six times faster than the actual one. As social media advances and algorithms become more tuned to spreading content of one's liking irresepective of whether the content being shared to them is that of a verified source or not, the actual news has lesser and lesser chance of reaching people. Project Search Bar is our response to misinformation.</p>
  </p>
-  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](https://datanecdotes-psb.herokuapp.com/)
   
-  <h3> Results </h3>
+  <h3> Functionalities </h3>
+  Search any ongoing topic and get:
+  
+- [x] Tweet Analysis 
+- [x] News Summary and Analysis
   
   <br/>
   <br/>
@@ -17,4 +20,5 @@
         <li> <a href=" "/> Tarushi Pathak</a> </li>
   </ul>
 
-  <h3> Article Link : </h3>
+  <h3> Link to Application:</h3> 
+  [Click me](https://datanecdotes-psb.herokuapp.com/)
