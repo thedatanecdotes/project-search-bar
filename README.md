@@ -3,22 +3,25 @@
         <br/>
         <h2 align="center"> Project Search Bar </h2> 
         <br/>
-        <p align="center">  Fake news spreads six times faster than the actual one. As social media advances and algorithms become more tuned to spreading content of one's liking irresepective of whether the content being shared to them is that of a verified source or not, the actual news has lesser and lesser chance of reaching people. Project Search Bar is our response to misinformation.</p>
+        <p align="left">  Fake news spreads six times faster than the actual one. As social media advances and algorithms become more tuned to spreading content of one's liking irresepective of whether the content being shared to them is that of a verified source or not, the actual news has lesser and lesser chance of reaching people. Project Search Bar is our response to misinformation.</p>
  </p>
   
   <h3> Functionalities </h3>
   Search any ongoing topic and get:
   
-- [x] Tweet Analysis 
-- [x] News Summary 
-- [x] News Sentiment Analysis
+- [X] Tweet Sentiments Per Day for the last week
+- [X] Top 10 tweet location
+- [X] Positive and Negative Word Clouds of tweets
+- [X] News Summary 
+- [X] News Sentiment Analysis
+- [X] Downloadable Tweets Data (as per Twitter Guidelines)
   
   <br/>
   <br/>
   <h3> Contributors </h3>
   <ul>
-        <li> <a href=" "/> Kabir Nagpal </a> </li>
-        <li> <a href=" "/> Tarushi Pathak</a> </li>
+        <li> <a href="https://github.com/kabirnagpal"/> Kabir Nagpal </a> </li>
+        <li> <a href="https://github.com/tarushi98"/> Tarushi Pathak</a> </li>
   </ul>
 
   <h3> Link to Application:</h3> 
