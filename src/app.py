@@ -25,12 +25,19 @@ st.write("Enter the topic you want to search, in the sidebar. :wink: :mag:")
 st.sidebar.title("Project Search Bar")
 keyword=st.sidebar.text_input("Enter the keyword you want to search"," ")
 if (keyword !=" "):
+
         st.write("Looking for ",keyword,"...")
-        st.write("Reading News Articles..")
-        news_data=news_sentiments(keyword,10)
-        st.write("Analysing tweets...")
-        data=get_data(keyword,get_api())
-        st.success("Done!")
+        st.write("Reading News Articles and tweets ...")
+        
+        p = Parallel(n_jobs=-1)([
+            delayed(news_sentiments)(keyword,10),
+            delayed(get_data)(keyword,get_api())
+        ])
+        
+        news_data = p[0]
+        data = p[1]
+        st.write("Done ..")
+        
         pos=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="POSITIVE"]
         neg=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="NEGATIVE"]
         pos=set(pos)
