@@ -33,8 +33,11 @@ if (keyword !=" "):
         st.success("Done!")
         pos=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="POSITIVE"]
         neg=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="NEGATIVE"]
-        pos=list(set(pos))
-        neg=list(set(pos))
+        pos=set(pos)
+        neg=set(neg)
+        common = pos.intersection(neg)
+        pos = pos-common
+        neg = neg-common
         sns.set()
         fig, ax = plt.subplots()
         fig.set_size_inches(11.7, 8.27)
