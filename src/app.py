@@ -21,6 +21,20 @@ def get_table_download_link(df):
     b64 = base64.b64encode(csv.encode()).decode()  # some strings <-> bytes conversions necessary here
     href = f'<a href="data:file/csv;base64,{b64}">Download csv file</a>'
     return href
+def common(p,n):
+    p = set(p.split(' '))
+    n = set(n.split(' '))
+    print(p)
+    c = p.intersection(n)
+    return list(c)
+
+def rep(cloud,common_ele):
+    cloud = cloud.split(' ')
+    new_words = ' '.join([word for word in cloud if word not in common_ele])
+    return new_words
+
+
+
 
 st.set_page_config( page_title="The Data Anecdotes",page_icon="🧊",layout="centered",initial_sidebar_state="expanded")
 st.title("The Data Anecdotes")
@@ -43,11 +57,6 @@ if (keyword !=" "):
         
         pos=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="POSITIVE"]
         neg=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="NEGATIVE"]
-        pos=set(pos)
-        neg=set(neg)
-        common = pos.intersection(neg)
-        pos = pos-common
-        neg = neg-common
         sns.set()
         fig, ax = plt.subplots()
         fig.set_size_inches(11.7, 8.27)
@@ -64,6 +73,10 @@ if (keyword !=" "):
             
             st.header("Positive Word Cloud")
             poscloud=' '.join([i for i in pos])
+            negcloud=' '.join([i for i in neg])
+            c = common(poscloud,negcloud)
+            poscloud = rep(poscloud,c)
+            negcloud = rep(negcloud,c)
             wordcloud = WordCloud(width=800, height=500, random_state=21, max_font_size=110).generate(poscloud)
             plt.figure(figsize=(15, 8))
             plt.imshow(wordcloud, interpolation="bilinear")
@@ -71,7 +84,7 @@ if (keyword !=" "):
             st.pyplot(clear_figure="False",use_column_width="True")
             
             st.header("Negative Word Cloud")
-            negcloud=' '.join([i for i in neg])
+            
             wordcloud = WordCloud(width=800, height=500, random_state=21, max_font_size=110).generate(negcloud)
             plt.figure(figsize=(15, 8))
             plt.imshow(wordcloud, interpolation="bilinear")
