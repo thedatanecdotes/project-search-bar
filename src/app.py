@@ -8,6 +8,7 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from tweet import get_data,get_api
 from news import news_sentiments
+
 st.set_option('deprecation.showfileUploaderEncoding', False)
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -84,4 +85,4 @@ if (keyword !=" "):
                     st.write(" _",key,"_ :",value)
         with st.beta_expander("See Tweet Data"):
              st.dataframe(data)
-             st.markdown(get_table_download_link(data),unsafe_allow_html=True)
+             st.markdown(get_table_download_link(data))
