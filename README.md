@@ -25,4 +25,4 @@
   <h3> Link to Application:</h3> <a href="https://datanecdotes-psb.herokuapp.com/">The Data Anecdotes-PSB</a>
 
   <h3> Note to Developer </h3>
-    Any push will now result to a new deploy. 
+    Any push will now result in a new deploy. 
