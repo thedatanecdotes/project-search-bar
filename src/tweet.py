@@ -14,7 +14,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 sentiment=SentimentIntensityAnalyzer()
 words=set(nltk.corpus.words.words())
 def get_api():
-    consumer_key = os.enviorn['consumer_key']
+    consumer_key = os.environ['consumer_key']
     consumer_secret = os.environ['consumer_secret']
     access_key= os.environ['access_key']
     access_secret = os.environ['access_secret']
