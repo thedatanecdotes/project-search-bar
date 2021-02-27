@@ -28,6 +28,8 @@ def news_sentiments(keyword,num=5,min_sentence = 5):
     while(news.count(-1)>0):
         urls.remove(urls[news.index(-1)])
         news.remove(-1)
+    if(len(news)==0):
+            return "Sorry! No news found for the topic mentioned.Try again later"
     sentiments = [analyzer.polarity_scores(i)['compound'] for i in news]
     for i in range(len(sentiments)):
         c = sentiments[i]
