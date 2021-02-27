@@ -53,7 +53,7 @@ if (keyword !=" "):
         
         news_data = p[0]
         data = p[1]
-        st.write("Done ..")
+        st.success("Done")
         
         pos=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="POSITIVE"]
         neg=[row['Clean Tweets'] for _,row in data.iterrows() if row['SS']=="NEGATIVE"]
@@ -92,10 +92,13 @@ if (keyword !=" "):
             st.pyplot(clear_figure="False",use_column_width="True")
         
         with st.beta_expander("News Websites Analysis"):
-            for i in range(len(news_data)):
-                st.write("**Article**:",i)
-                for key,value in news_data[i].items():
-                    st.write(" _",key,"_ :",value)
+            if (type(news_data) is dict):
+                for i in range(len(news_data)):
+                    st.write("**Article**:",i)
+                    for key,value in news_data[i].items():
+                        st.write(" _",key,"_ :",value)
+            else:
+                st.write(news_data)
         with st.beta_expander("See Tweet Data"):
              st.dataframe(data)
              st.markdown(get_table_download_link(data))
