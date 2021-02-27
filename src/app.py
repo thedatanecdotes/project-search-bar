@@ -101,4 +101,4 @@ if (keyword !=" "):
                 st.write(news_data)
         with st.beta_expander("See Tweet Data"):
              st.dataframe(data)
-             st.markdown(get_table_download_link(data))
+             st.markdown(get_table_download_link(data),unsafe_allow_html=True)
