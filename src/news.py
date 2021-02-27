@@ -7,7 +7,7 @@ from summary import generate_summary
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import re
 
-newsapi = NewsApiClient(api_key=os.environ['news_api'])
+newsapi = NewsApiClient(api_key=os.environ['news-api'])
 analyzer = SentimentIntensityAnalyzer()
 
 def process_news(article_url,min_sentence = 5):
