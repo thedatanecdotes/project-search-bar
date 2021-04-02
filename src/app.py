@@ -3,6 +3,10 @@ import streamlit as st
 import seaborn as sns
 import base64
 import time
+import nltk 
+nltk.download("words")
+nltk.download("stopwords")
+nltk.download("wordnet")
 from joblib import Parallel,delayed
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
